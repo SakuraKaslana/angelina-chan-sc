@@ -10,7 +10,7 @@ module.exports = new Command({
                                                  hour: "numeric",
                                                  minute: "numeric",
                                                  second: "numeric"})
-        console.log("[",time,"]", message.author,`checked the ping (was ${client.ws.ping} ms)`)
+        console.log("[",time,"]", message.author.username,`checked the ping (was ${client.ws.ping} ms)`)
         const msg =  await message.reply(`Ping: ${client.ws.ping} ms`);
 
         msg.edit(`Ping: ${client.ws.ping} ms\nAPI ping: ${msg.createdTimestamp - message.createdTimestamp} ms`)

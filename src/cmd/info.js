@@ -10,7 +10,7 @@ module.exports = new Command({
             hour: "numeric",
             minute: "numeric",
             second: "numeric"})
-    console.log("[",time,"]", message.author,"used info")
+    console.log("[",time,"]", message.author.username,"used info")
         message.channel.send(`Developed by Sakura Kaslana#5414, code yeeted from Angelina-chan, another Sakura bot\nSource code(Please read the README.md and LICENSE.ms before using this code): https://github.com/SakuraKaslana/angelina-chan-sc`)
 
     }

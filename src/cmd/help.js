@@ -12,7 +12,7 @@ module.exports = new Command({
             hour: "numeric",
             minute: "numeric",
             second: "numeric"})
-    console.log("[",time,"]", message.author,"needed to remember what commands to use")
+    console.log("[",time,"]", message.author.username,"needed to remember what commands to use")
         const embed = new MessageEmbed()
         .setColor('AQUA')
         .setTitle('Angelina-chan help page')
