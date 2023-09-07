@@ -44,11 +44,18 @@ client.on("ready", async () => {
 																					 hour: "numeric",
 																					 minute: "numeric",
 																					 second: "numeric"})
+	var latestxkcd =  await axios.get(`https://xkcd.com/info.0.json`);
+	fs.writeFile('./src/data/xkcd.json',JSON.stringify(latestxkcd.data), err => {
+		if (err) {
+			console.log("[", time, "]", "ERROR: Cannot write to file! Throwing error below");
+			throw(err);
+		}
+	})
 	console.log(`[${time} INFO] Angie is on`);
 	var cachexkcd = cron.CronJob('0 23 * * * 1,3,5', async function(){
 	console.log(`[${time} INFO] Caching latest xkcd data...`);
-	var latestxkcd =  await axios.get(`https://xkcd.com/info.0.json`);
-	var lateststr = JSON.stringify(latestxkcd.data);
+	latestxkcd =  await axios.get(`https://xkcd.com/info.0.json`);
+	lateststr = JSON.stringify(latestxkcd.data);
 	fs.writeFile('./src/data/xkcd.json', lateststr, err => {
 		if (err) {
 			console.log("[", time, "]", "ERROR: Cannot write to file! Throwing error below");
