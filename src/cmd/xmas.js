@@ -18,13 +18,13 @@ module.exports = new Command({
         delta -= hours * 3600;
         
         message.reply(`There's ${days} days and ${hours} hours left until Christmas`);}
-	else if (date_now >= date_future && date_now < 1671987600000) {message.reply(`Merry Christmas!`);}
+	else if (date_now >= date_future && date_now < 1703350800000) {message.reply(`Merry Christmas!`);}
 	else {message.reply(`Christmas's done already, go wait for new year's`);}
 	var time = new Date().toLocaleTimeString('en-US', { hour12: false,
                                                  hour: "numeric",
                                                  minute: "numeric",
                                                  second: "numeric"})
-        console.log("[",time,"]", message.author.tag,`wanted to know when's christmas`);
+        console.log("[",time,"]", message.author,`wanted to know when's christmas`);
 	
 
     }   
