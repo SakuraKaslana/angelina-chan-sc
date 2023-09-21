@@ -1,8 +1,11 @@
 # Angelina-chan
 
 > An update on the status of this project:
+>
 > Shiina Kochiya is currently having problems with life as well as family issues.
+>
 > For now, he will temporairly be on hiatus, until at least the later half of 2024.
+>
 > During this time, I (giabao06) will lightly maintain this project and do some rewrites.
 >
 > Message written on 2023-09-21 10:53 +07
