@@ -1,37 +1,15 @@
 //operator.js, rewritten 
 //did you know: the filename, temporary cmd name and its datafile (op_remas.json) is a reference to a maimai difficulty
-
-/*
-This comment block should be removed when all goals are met.
-
-# General ideas for operator.js rewrite
-
-## why?
-- bad design in general, mainly too many switch cases
-- op.json data is poorly structured
-- No lookup table based on rarity 
-
-## how will the rewrite work?
-- arg1 is name
-- finds arg1 in the lookup table (maybe a separate oprarity.json?, goal <1s lookup) 
-note: this method may be inefficient; but for categorization purposes it might be useful
-if no need, we can just do an `op.name` reply directly.
-
-- once found, reply with op.rarity.name (so no switch cases)
-- if not found, reply with not found.
-
-2023-09-21 
-- 20:42 +07: now I just relized that a better way to do this is just to use json data as a lookup table... I need a break. -giabao06
-- 21:08 +07: well now I thought of just making every operator a json object then send it... what's wrong with me -giabao06
-- 21:28 +07: never mind, a lookup table would still be needed :skull: (for now)
-*/
+//note to future self: get rid of the lookup table, if you can
 
 const { MessageFlags } = require ("discord.js");
 const command = require("../structures/Command.js");
 var oplist = require ('../data/op_remas.json')
 
-//add new operators here if there is an op_remas.json update
-
+/*
+Add operators in these const arrays if there is an op_remas.json update.
+Also, remember to add operators to the list in op_remas.json, as it will be sent if the op is not found.
+*/
 const list6 = ["siege", "angelina", "skalter", "w", "ceobe", "dusk", "chen", "blaze", "kaltsit", "chalter", "passenger", "skadi", "mudrock", "shining", "nightingale"];
 const list5 = [];
 const list4 = ["ambriel"];
@@ -53,19 +31,28 @@ module.exports = new command({
             if (opname === "exu") {var opname = "exusiai"}; //no entry for this too...
             if (opname === "sa") {var opname = "silverash"};
             if (opname === "kal'tsit") var opname = "kaltsit";
-            var found=0;
+            var found=0, chk=true;
+            while (chk == true) { // let's not waste CPU cycles
             for (let i=0; i<=list6.length; i++) {
-                if (opname === list6[i]) {message.reply(oplist.chr_6st[opname]); found=1; break}}
+                if (opname === list6[i]) {message.reply(oplist.chr_6st[opname]); found=1; chk=false; break}}
             for (let i=0; i<=list5.length; i++) {
-                if (opname === list5[i]) {message.reply(oplist.chr_5st[opname]); found=1; break}}
+                if (opname === list5[i]) {message.reply(oplist.chr_5st[opname]); found=1; chk=false; break}}
             for (let i=0; i<=list4.length; i++) {
-                if (opname === list4[i]) {message.reply(oplist.chr_4st[opname]); found=1; break}}
+                if (opname === list4[i]) {message.reply(oplist.chr_4st[opname]); found=1; chk=false; break}}
             for (let i=0; i<=list3.length; i++) {
-                if (opname === list3[i]) {message.reply(oplist.chr_3st[opname]); found=1; break}}
+                if (opname === list3[i]) {message.reply(oplist.chr_3st[opname]); found=1; chk=false; break}}
             for (let i=0; i<=list2.length; i++) {
-                if (opname === list2[i]) {message.reply(oplist.chr_2st[opname]); found=1; break}}
+                if (opname === list2[i]) {message.reply(oplist.chr_2st[opname]); found=1; chk=false; break}}
             for (let i=0; i<=list1.length; i++) {
-                if (opname === list1[i]) {message.reply(oplist.chr_robots[opname]); found=1; break}}
-            if (found === 0 ) message.reply('Operator currently not in database. Currently available operators: (this part isnt made yet)')
+                if (opname === list1[i]) {message.reply(oplist.chr_robots[opname]); found=1; chk=false; break}}
+            chk=false; break;
+            }
+            if (found === 0 ) message.reply(`Operator currently not in database. Currently available operators:\n \n**6 stars:** ${oplist.lists.list6}\n**5 stars:** ${oplist.lists.list5}\n**4 stars:** ${oplist.lists.list4}\n**3 stars:** ${oplist.lists.list3}\n**2 stars:** ${oplist.lists.list2}\n**1 star / Robots:** ${oplist.lists.list1}\n`)
+            var time = new Date().toLocaleTimeString('en-US', { hour12: false,
+                hour: "numeric",
+                minute: "numeric",
+                                                          second: "numeric"})
+
+            console.log(`[${time} INFO] ${message.author.tag} used a!operator ${opname}`);
         }
 })
