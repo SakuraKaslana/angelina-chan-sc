@@ -19,9 +19,9 @@ const list1 = ["lancet", "castle-3", "thermal-ex"]
 
 
 module.exports = new command({
-        name: "operator_remas",
+        name: "operator",
         description: "operator.js remas version",
-        alias: ["opr"],
+        alias: ["op"],
         async run(message, args, client){
             if (message.author.bot) return;
             var opname = args.slice(1).join(" ").toLowerCase();
@@ -31,23 +31,25 @@ module.exports = new command({
             if (opname === "exu") {var opname = "exusiai"}; //no entry for this too...
             if (opname === "sa") {var opname = "silverash"};
             if (opname === "kal'tsit") var opname = "kaltsit";
-            var found=0, chk=true;
+            var found=false, chk=true;
+            if (opname === "list") {found = true; chk == false; message.reply(`Currently available operators:\n \n**6 stars:** ${oplist.lists.list6}\n**5 stars:** ${oplist.lists.list5}\n**4 stars:** ${oplist.lists.list4}\n**3 stars:** ${oplist.lists.list3}\n**2 stars:** ${oplist.lists.list2}\n**1 star / Robots:** ${oplist.lists.list1}\n`)}
             while (chk == true) { // let's not waste CPU cycles
+                if (found==true) {chk = false; break;}
             for (let i=0; i<=list6.length; i++) {
-                if (opname === list6[i]) {message.reply(oplist.chr_6st[opname]); found=1; chk=false; break}}
+                if (opname === list6[i]) {message.reply(oplist.chr_6st[opname]); found=true; chk=false; break}}
             for (let i=0; i<=list5.length; i++) {
-                if (opname === list5[i]) {message.reply(oplist.chr_5st[opname]); found=1; chk=false; break}}
+                if (opname === list5[i]) {message.reply(oplist.chr_5st[opname]); found=true; chk=false; break}}
             for (let i=0; i<=list4.length; i++) {
-                if (opname === list4[i]) {message.reply(oplist.chr_4st[opname]); found=1; chk=false; break}}
+                if (opname === list4[i]) {message.reply(oplist.chr_4st[opname]); found=true; chk=false; break}}
             for (let i=0; i<=list3.length; i++) {
-                if (opname === list3[i]) {message.reply(oplist.chr_3st[opname]); found=1; chk=false; break}}
+                if (opname === list3[i]) {message.reply(oplist.chr_3st[opname]); found=true; chk=false; break}}
             for (let i=0; i<=list2.length; i++) {
-                if (opname === list2[i]) {message.reply(oplist.chr_2st[opname]); found=1; chk=false; break}}
+                if (opname === list2[i]) {message.reply(oplist.chr_2st[opname]); found=true; chk=false; break}}
             for (let i=0; i<=list1.length; i++) {
-                if (opname === list1[i]) {message.reply(oplist.chr_robots[opname]); found=1; chk=false; break}}
+                if (opname === list1[i]) {message.reply(oplist.chr_robots[opname]); found=true; chk=false; break}}
             chk=false; break;
             }
-            if (found === 0 ) message.reply(`Operator currently not in database. Currently available operators:\n \n**6 stars:** ${oplist.lists.list6}\n**5 stars:** ${oplist.lists.list5}\n**4 stars:** ${oplist.lists.list4}\n**3 stars:** ${oplist.lists.list3}\n**2 stars:** ${oplist.lists.list2}\n**1 star / Robots:** ${oplist.lists.list1}\n`)
+            if (found === false) message.reply(`Operator currently not in database. Currently available operators:\n \n**6 stars:** ${oplist.lists.list6}\n**5 stars:** ${oplist.lists.list5}\n**4 stars:** ${oplist.lists.list4}\n**3 stars:** ${oplist.lists.list3}\n**2 stars:** ${oplist.lists.list2}\n**1 star / Robots:** ${oplist.lists.list1}\n`)
             var time = new Date().toLocaleTimeString('en-US', { hour12: false,
                 hour: "numeric",
                 minute: "numeric",
