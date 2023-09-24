@@ -2,6 +2,9 @@
 //did you know: the filename, temporary cmd name and its datafile (op_remas.json) is a reference to a maimai difficulty
 //note to future self: get rid of the lookup table, if you can
 
+// > bro decided to write the command I abandoned a long time ago :skull: -Shiina
+// > blame "ngẫu hứng" for that -giabao06
+
 const { MessageFlags } = require ("discord.js");
 const command = require("../structures/Command.js");
 var oplist = require ('../data/op_remas.json')
@@ -26,11 +29,15 @@ module.exports = new command({
             if (message.author.bot) return;
             var opname = args.slice(1).join(" ").toLowerCase();
             //commonly used names must be defined to our names
-            if (opname === "chen the holung day") {var opname = "chalter"};
-            if (opname === "eyja") {var opname = "eyjafjalla"};  //no entry for this either
-            if (opname === "exu") {var opname = "exusiai"}; //no entry for this too...
-            if (opname === "sa") {var opname = "silverash"};
-            if (opname === "kal'tsit") var opname = "kaltsit";
+            //alter names
+            if (opname === "chen the holung day") {opname = "chalter"};
+            if (opname === "skadi the corrupting heart") opname = "skalter";
+            //shortened names
+            if (opname === "eyja") {opname = "eyjafjalla"};  //no entry for this either
+            if (opname === "exu") {opname = "exusiai"}; //no entry for this too...
+            if (opname === "sa") {opname = "silverash"};
+            //names that contain weird characters
+            if (opname === "kal'tsit") opname = "kaltsit";
             var found=false, chk=true;
             if (opname === "list") {found = true; chk == false; message.reply(`Currently available operators:\n \n**6 stars:** ${oplist.lists.list6}\n**5 stars:** ${oplist.lists.list5}\n**4 stars:** ${oplist.lists.list4}\n**3 stars:** ${oplist.lists.list3}\n**2 stars:** ${oplist.lists.list2}\n**1 star / Robots:** ${oplist.lists.list1}\n`)}
             while (chk == true) { // let's not waste CPU cycles
@@ -55,6 +62,6 @@ module.exports = new command({
                 minute: "numeric",
                                                           second: "numeric"})
 
-            console.log(`[${time} INFO] ${message.author.tag} used a!operator ${opname}`);
+            console.log(`[${time} INFO] ${message.author.username} used a!operator ${opname}`);
         }
 })
