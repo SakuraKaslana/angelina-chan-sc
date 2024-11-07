@@ -10,6 +10,14 @@
 >
 > Message written on 2023-09-21 10:53 +07
 
+> Bot update (7 November 2024)
+>
+> Both devs are busy with school life, different projects and much more.
+>
+> Angelina will not be maintained by us anymore. Possibly in the future we might revive it for fun, but idk
+>
+> (you will always be my only favorite creation - Shiina)
+
 An Arknights operator stats and fun Discord bot by Sakura Kaslana and Giabao06 for some servers. Not intended for global deployment.
 
 Requires Node v17+ to run.
