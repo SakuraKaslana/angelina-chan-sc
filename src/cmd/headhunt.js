@@ -24,7 +24,7 @@ module.exports = new Command({
         var numba = Math.floor(Math.random() * 100)+1;
         
         //console.log(rate3, rate4, rate5, rate6)
-        if(global.userPity[pityIndex]>51){
+        if(global.userPity[pityIndex]>50){
             var rate3 = pityTable[global.userPity[pityIndex]].rate3;
             var rate4 = pityTable[global.userPity[pityIndex]].rate4;
             var rate5 = pityTable[global.userPity[pityIndex]].rate5;
